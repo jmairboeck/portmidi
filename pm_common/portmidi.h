@@ -269,7 +269,7 @@ typedef struct {
     struct {
         enum PmSysDepPropertyKey key;
         const void *value;
-    } properties[];  /**< array of key/value pairs */
+    } properties[0];  /**< array of key/value pairs */
 } PmSysDepInfo;
 
 /** Version number of PmSysDepInfo, stored in #PmSysDepInfo::structVersion

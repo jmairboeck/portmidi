@@ -61,6 +61,7 @@ static void set_sysdepinfo(char m_or_p, const char *name)
         printf("Error: sysdepinfo was allocated to hold 2 parameters\n");
         exit(1);
     }
+    {
     int i = sysdepinfo->length++;
     enum PmSysDepPropertyKey k = pmKeyNone;
     if (m_or_p == 'm') k = pmKeyCoreMidiManufacturer;
@@ -68,6 +69,7 @@ static void set_sysdepinfo(char m_or_p, const char *name)
     else if (m_or_p == 'c') k = pmKeyAlsaClientName;
     sysdepinfo->properties[i].key = k;
     sysdepinfo->properties[i].value = name;
+    }
 }
 
 
@@ -483,8 +485,9 @@ int main(int argc, char *argv[])
         if (strcmp(argv[i], "-h") == 0) {
             exit(0);
         } else if (strcmp(argv[i], "-p") == 0 && (i + 1 < argc)) {
+            const char *port_name;
             i = i + 1;
-            const char *port_name = argv[i];
+            port_name = argv[i];
             set_sysdepinfo('p', port_name);
             printf("Port name will be %s\n", port_name);
         } else if (strcmp(argv[i], "-c") == 0 && (i + 1 < argc)) {

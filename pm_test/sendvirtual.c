@@ -34,6 +34,7 @@ static void set_sysdepinfo(char m_or_p, const char *name)
         printf("Error: sysdepinfo was allocated to hold 2 parameters\n");
         exit(1);
     }
+    {
     int i = sysdepinfo->length++;
     enum PmSysDepPropertyKey k = pmKeyNone;
     if (m_or_p == 'm') k = pmKeyCoreMidiManufacturer;
@@ -41,6 +42,7 @@ static void set_sysdepinfo(char m_or_p, const char *name)
     else if (m_or_p == 'c') k = pmKeyAlsaClientName;
     sysdepinfo->properties[i].key = k;
     sysdepinfo->properties[i].value = name;
+    }
 }
 
 
